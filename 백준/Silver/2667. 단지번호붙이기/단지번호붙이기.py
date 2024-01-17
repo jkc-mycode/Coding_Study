@@ -7,10 +7,10 @@ def dfs(x, y):
         global home
         home += 1  # 집 수 증가
         map[x][y] = 0  # 체크한 좌표이기에 0으로 표시
-        dfs(x, y+1)  # 상
-        dfs(x, y-1)  # 하
-        dfs(x-1, y)  # 좌
-        dfs(x+1, y)  # 우
+        dfs(x-1, y)  # 상
+        dfs(x+1, y)  # 하
+        dfs(x, y-1)  # 좌
+        dfs(x, y+1)  # 우
         return True
     return False
         
