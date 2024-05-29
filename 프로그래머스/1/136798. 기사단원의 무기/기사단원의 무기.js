@@ -14,12 +14,10 @@ function getDivisorCount(num) {
 function solution(number, limit, power) {
     const arr = [];
     for (let i = 1; i < number + 1; i++){
-        arr.push(getDivisorCount(i));
-    }
-    
-    for (let i = 0; i < arr.length; i++) {
-        if (arr[i] > limit) {
-            arr[i] = power
+        if (getDivisorCount(i) > limit) {
+            arr.push(power);
+        } else {
+            arr.push(getDivisorCount(i));
         }
     }
     return arr.reduce((a, b) => a + b);
