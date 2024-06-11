@@ -14,35 +14,27 @@ function solution(survey, choices) {
         }
     }
     
-    if (mbti.R > mbti.T) {
+    if (mbti.R >= mbti.T) {
         result += "R";
-    } else if (mbti.R === mbti.T) {
-        result += "R"
-    }else {
+    } else {
         result += "T"
     }
     
-    if (mbti.C > mbti.F) {
+    if (mbti.C >= mbti.F) {
         result += "C";
-    } else if (mbti.C === mbti.F) {
-        result += "C"
-    }else {
+    } else {
         result += "F"
     }
     
-    if (mbti.J > mbti.M) {
+    if (mbti.J >= mbti.M) {
         result += "J";
-    } else if (mbti.J === mbti.M) {
-        result += "J"
-    }else {
+    } else {
         result += "M"
     }
     
-    if (mbti.A > mbti.N) {
+    if (mbti.A >= mbti.N) {
         result += "A";
-    } else if (mbti.A === mbti.N) {
-        result += "A"
-    }else {
+    } else {
         result += "N"
     }
     
