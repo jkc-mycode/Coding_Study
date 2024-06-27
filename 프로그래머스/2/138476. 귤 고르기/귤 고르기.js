@@ -8,15 +8,9 @@ function solution(k, tangerine) {
     let result = 0;
     
     for (let count of countsArr) {
-        if (k >= count) {
-            k -= count;
-            result++;
-        } else if (k > 0) {
-            result++;
-            break;
-        } else {
-            break;
-        }
+        result++;
+        if (k > count) k -= count;
+        else break;
     }
     
     return result;
