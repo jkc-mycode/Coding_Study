@@ -12,16 +12,16 @@ function solution(s) {
         if (i) arr.push(arr.shift());
         
         const stack = [];
-        const queue = [];
+        const temp = [];
         for (let str of arr) {
             if (str === '(' || str === '{' || str === '[') stack.push(str);
             else {
                 if (stack.length && stack[stack.length-1] === obj[str]) stack.pop();
-                else queue.push(str);
+                else temp.push(str);
             }
         }
         
-        if (!stack.length && !queue.length) result++;
+        if (!stack.length && !temp.length) result++;
     }
     return result;
 }
