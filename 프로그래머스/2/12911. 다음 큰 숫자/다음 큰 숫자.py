@@ -1,5 +1,4 @@
 def solution(n):
-    origin_num = n
     origin_bin_num = bin(n)[2:]
     
     while True:
