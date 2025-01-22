@@ -1,21 +1,27 @@
+def set_str(s):
+    s = s.lower()
+    s = [s[i]+s[i+1] for i in range(len(s)-1)]
+    result = []
+    for i in s:
+        if i[0].isalpha() and i[1].isalpha():
+            result.append(i)
+            
+    return result
+
 def solution(str1, str2):
-    def set_str(s):
-        s = s.lower()
-        return [s[i:i+2] for i in range(len(s)-1) if s[i].isalpha() and s[i+1].isalpha()]
-    
-    g1 = set_str(str1)
-    g2 = set_str(str2)
+    str1 = set_str(str1)
+    str2 = set_str(str2)
     intersection = []
-    union = g1[:]
+    union = str1[:]
     
-    for element in g1:
-        if element in g2:
-            intersection.append(element)
-            g2.remove(element)
+    for i in str1:
+        if i in str2:
+            intersection.append(i)
+            str2.remove(i)
+    union.extend(str2)
     
-    union.extend(g2)
-    
-    if len(union) == 0 and len(intersection) == 0:
+    if len(intersection) == 0 and len(union) == 0:
         return 65536
     
     return int(len(intersection) / len(union) * 65536)
+    
