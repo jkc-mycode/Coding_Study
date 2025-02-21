@@ -32,10 +32,7 @@ def solution(book_time):
 #     end_times = []
     
 #     for start, end in book_time:
-#         available = False
-        
-#         end_times.sort()
-        
+#         available = False        
 #         for i in range(len(end_times)):
 #             if start >= end_times[i]:
 #                 end_times[i] = plustime(end)
