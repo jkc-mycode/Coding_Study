@@ -1,12 +1,13 @@
 def solution(s):
-    if s[0] == ')':
+    stack = []
+    if s[0] == ')': return False
+    for i in range(len(s)):
+        if s[i] == '(':
+            stack.append(s[i])
+        elif stack:
+            stack.pop()
+    
+    if len(stack) == 0:
+        return True
+    else:
         return False
-    
-    s_stack = []
-    for i in s:
-        if i == '(':
-            s_stack.append(1)
-        elif i == ')' and len(s_stack) != 0:
-            s_stack.pop()
-    
-    return (True if len(s_stack) == 0 else False)
