@@ -1,15 +1,14 @@
+from collections import deque
+
 def solution(people, limit):
-    people.sort()
+    result = 0
+    queue = deque(sorted(people, reverse=True))
     
-    light = 0
-    heavy = len(people) - 1
-    boats = 0
-
-    while light <= heavy:
-        if people[light] + people[heavy] <= limit:
-            light += 1
-        
-        heavy -= 1
-        boats += 1
-
-    return boats
+    while queue:
+        cur = queue.popleft()
+        if cur <= limit:
+            if queue and cur + queue[-1] <= limit:
+                cur += queue.pop()
+        result += 1
+    
+    return result
