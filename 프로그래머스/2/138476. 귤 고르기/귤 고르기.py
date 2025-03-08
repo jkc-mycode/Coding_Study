@@ -2,9 +2,9 @@ from collections import Counter
 
 def solution(k, tangerine):
     result = 0
-    tang_dict = dict(sorted(Counter(tangerine).items(), key=lambda x: x[1], reverse=True))
+    tang = sorted(Counter(tangerine).values(), reverse=True)
     
-    for key, value in tang_dict.items():
+    for value in tang:
         if k <= 0:
             break
         k -= value
