@@ -1,14 +1,18 @@
 def solution(n, words):
-    n_dict = {i: 0 for i in range(1, n+1)}
-    used_words = [words[0]]
-    n_dict[1] += 1
+    result = [0, 0]
+    i = 1
+    words_dict = {w: 0 for w in words}
     
-    for i in range(1, len(words)):
-        if words[i-1][-1] == words[i][0] and (words[i] not in used_words):
-            n_dict[i%n+1] += 1
-            used_words.append(words[i])
-            continue
-        return [i%n+1, n_dict[i%n+1]+1]
+    while i < len(words):
+        words_dict[words[i-1]] += 1
+        if words[i-1][-1] != words[i][0] or words_dict[words[i]] != 0:
+            result[0] = i % n
+            result[1] = i // n
+            break
+        i += 1
     
-    return [0,0]
-        
+    if result[0] != 0 or result[1] != 0:
+        result[0] += 1
+        result[1] += 1
+    
+    return result
