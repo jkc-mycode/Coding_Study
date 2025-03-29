@@ -1,26 +1,19 @@
 def solution(cacheSize, cities):
-    cache = {}
-    cache_key = []
     result = 0
+    cache = {}
     
     if cacheSize == 0:
         return len(cities) * 5
     
-    for city in cities:
-        city = city.lower()
-        
-        if city in cache:
+    for i in range(len(cities)):
+        city = cities[i].lower()
+        if cache.get(city) != None:
             result += 1
-            cache_key.remove(city)
-            cache_key.append(city)
         else:
             result += 5
-            if cacheSize > 0:
-                if len(cache_key) >= cacheSize:
-                    oldest_city = cache_key.pop(0)
-                    del cache[oldest_city]
-            cache[city] = True
-            cache_key.append(city)
-
+            if len(cache) == cacheSize:
+                temp_key = min(cache, key=cache.get)
+                cache.pop(temp_key)
+        cache[city] = i
+    
     return result
-            
