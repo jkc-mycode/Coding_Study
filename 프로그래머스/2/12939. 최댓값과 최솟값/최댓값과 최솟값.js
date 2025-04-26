@@ -1,7 +1,4 @@
 function solution(s) {
-    s = s.split(" ").map((val) => +val)
-    const min = Math.min(...s);
-    const max = Math.max(...s);
-    
-    return `${min} ${max}`
+    const result = s.split(' ').map((str) => +str).sort((a, b) => a - b)
+    return `${result[0]} ${result[result.length-1]}`
 }
