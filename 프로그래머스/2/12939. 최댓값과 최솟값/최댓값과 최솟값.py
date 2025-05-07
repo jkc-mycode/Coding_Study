@@ -1,3 +1,3 @@
 def solution(s):
-    result = sorted(list(map(int, s.split(" "))))
-    return str(result[0]) + " " + str(result[-1])
+    result = sorted(s.split(' '), key=lambda x: int(x))
+    return result[0] + ' ' + result[-1]
