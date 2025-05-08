@@ -1,13 +1,13 @@
 def solution(n):
-    result = 0
+    result = 1
     
-    for i in range(1, n+1):
-        num = 0
-        for j in range(i, n+1):
-            num += j
-            if num >= n:
+    for i in range(1, n):
+        temp = 0
+        for j in range(i, n):
+            temp += j
+            if temp >= n:
                 break
-        if num == n:
+        if temp == n:
             result += 1
     
     return result
