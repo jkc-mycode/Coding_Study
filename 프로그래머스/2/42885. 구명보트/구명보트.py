@@ -2,13 +2,15 @@ from collections import deque
 
 def solution(people, limit):
     result = 0
-    queue = deque(sorted(people, reverse=True))
+    sorted_people = sorted(people, reverse=True)
+    queue = deque(sorted_people)
     
     while queue:
-        cur = queue.popleft()
-        if cur <= limit:
-            if queue and cur + queue[-1] <= limit:
-                cur += queue.pop()
+        value = queue.popleft()
+        if value <= limit:
+            if queue and value + queue[-1] <= limit:
+                value += queue.pop()
         result += 1
     
     return result
+                
