@@ -1,11 +1,13 @@
 def solution(elements):
+    ell = len(elements)
     list_set = set()
-    for i in range(2, len(elements)):
-        for j in range(len(elements)):
-            if j + i >= len(elements):
-                list_set.add(sum(elements[j:] + elements[:(j+i)%len(elements)]))
+    
+    for i in range(2, ell):
+        for j in range(ell):
+            if j + i >= ell:
+                list_set.add(sum(elements[j:] + elements[:(j+i)%ell]))
             else:
-                list_set.add(sum(elements[j:(j+i)%len(elements)]))
+                list_set.add(sum(elements[j:(j+i)%ell]))
     
     list_set = list_set.union(set(elements))
     list_set.add(sum(elements))
