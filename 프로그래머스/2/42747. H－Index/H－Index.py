@@ -1,11 +1,8 @@
 def solution(citations):
-    result = 0
-    citations.sort()
+    result = []
     
-    for i in range(len(citations)):
-        citations_length = len(citations[i:])
-        if citations_length <= citations[i]:
-            result = citations_length
-            break
-    
-    return result
+    for i in range(max(citations)):
+        if i > len(result): break
+        result = list(filter(lambda x: x>=i, citations))
+        
+    return len(result)
