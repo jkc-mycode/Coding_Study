@@ -1,12 +1,12 @@
 def solution(clothes):
-    clothes_dict = {}
-    for c in clothes:
-        if not clothes_dict.get(c[1]):
-            clothes_dict[c[1]] = []
-        clothes_dict[c[1]].append(c[0])
-    
     result = 1
-    for v in clothes_dict.values():
-        result *= (len(v) + 1)
+    clth_dict = {}
+    for c in clothes:
+        if clth_dict.get(c[1]) == None:
+            clth_dict[c[1]] = []
+        clth_dict[c[1]].append(c[0])
+    
+    for _,value in clth_dict.items():
+        result *= len(value) + 1
     
     return result - 1
