@@ -1,18 +1,19 @@
-def dfs(k, dungeons, visited, count):
-    max_count = count
-    
-    for i in range(len(dungeons)):
-        if not visited[i] and k >= dungeons[i][0]:
-            visited[i] = True
-            max_count = max(max_count, dfs(k-dungeons[i][1], dungeons, visited, count + 1))
-            visited[i] = False
-    
-    return max_count
-    
+from itertools import permutations
 
 def solution(k, dungeons):
-    visited = [False] * len(dungeons)
-    result = dfs(k, dungeons, visited, 0)
+    result = []
+    temp_k = k
+    per_dungeons = permutations(dungeons)
     
-    return result
+    for dungeon in per_dungeons:
+        temp_k = k
+        count = 0
+        for value in dungeon:
+            if temp_k >= value[0]:
+                count += 1
+                temp_k -= value[1]
+            else:
+                break
+        result.append(count)
     
+    return max(result)
