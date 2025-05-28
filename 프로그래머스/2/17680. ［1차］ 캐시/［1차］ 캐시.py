@@ -1,19 +1,21 @@
 def solution(cacheSize, cities):
     result = 0
+    count = 1
     cache = {}
     
     if cacheSize == 0:
-        return len(cities) * 5
+        return 5 * len(cities)
     
-    for i in range(len(cities)):
-        city = cities[i].lower()
-        if cache.get(city) != None:
-            result += 1
-        else:
-            result += 5
+    for city in cities:
+        norm_city = city.lower()
+        if cache.get(norm_city) == None:
             if len(cache) == cacheSize:
-                temp_key = min(cache, key=cache.get)
-                cache.pop(temp_key)
-        cache[city] = i
+                min_key = min(cache, key=cache.get)
+                cache.pop(min_key)
+            result += 5
+        else:
+            result += 1    
+        cache[norm_city] = count
+        count += 1
     
     return result
