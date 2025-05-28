@@ -1,10 +1,11 @@
 def solution(s):
-    s = sorted([i.split(',') for i in s[2:-2].split('},{')], key=lambda x: len(x))
-    result = [int(s[0][0])]
+    result = []
+    s_list = list(set(i.split(',')) for i in s[2:-2].split('},{'))
+    s_list = sorted(s_list, key=lambda x: len(x))
     
-    for i in range(1, len(s)):
-        temp = [value for value in s[i] if value not in s[i-1]]
-        result.append(int(temp[0]))
+    temp = set()
+    for i in s_list:
+        result += list(map(int, i - temp))
+        temp = i | temp
     
     return result
-            
