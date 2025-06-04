@@ -1,27 +1,25 @@
-def set_str(s):
-    s = s.lower()
-    s = [s[i]+s[i+1] for i in range(len(s)-1)]
-    result = []
-    for i in s:
-        if i[0].isalpha() and i[1].isalpha():
-            result.append(i)
-            
-    return result
+from collections import Counter
+import math
 
 def solution(str1, str2):
-    str1 = set_str(str1)
-    str2 = set_str(str2)
-    intersection = []
-    union = str1[:]
+    str1_list = []
+    str2_list = []
     
-    for i in str1:
-        if i in str2:
-            intersection.append(i)
-            str2.remove(i)
-    union.extend(str2)
+    for i in range(len(str1)-1):
+        if str1[i].isalpha() and str1[i+1].isalpha():
+            str1_list.append((str1[i]+str1[i+1]).lower())
     
-    if len(intersection) == 0 and len(union) == 0:
+    for i in range(len(str2)-1):
+        if str2[i].isalpha() and str2[i+1].isalpha():
+            str2_list.append((str2[i]+str2[i+1]).lower())
+    
+    if not str1_list and not str2_list:
         return 65536
     
-    return int(len(intersection) / len(union) * 65536)
+    shared_list = list((Counter(str1_list) & Counter(str2_list)).elements())
+    merged_list = list((Counter(str1_list) | Counter(str2_list)).elements())
     
+    if not shared_list:
+        return 0
+    else:
+        return math.floor(len(shared_list)/len(merged_list) * 65536)
