@@ -1,7 +1,14 @@
 def solution(numbers, target):
+    result = 0
     def dfs(index, cur_sum):
+        nonlocal result
         if index == len(numbers):
-            return 1 if cur_sum == target else 0
-        return dfs(index + 1, cur_sum + numbers[index]) + dfs(index + 1, cur_sum - numbers[index])
+            if cur_sum == target:
+                result += 1
+            return 
+        
+        dfs(index + 1, cur_sum + numbers[index])
+        dfs(index + 1, cur_sum - numbers[index])
     
-    return dfs(0, 0)
+    dfs(0, 0)
+    return result
