@@ -1,19 +1,20 @@
-def to_base(n, base):
+def to_base_n(num, base):
+    digits = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"
     result = ""
-    digits = "0123456789ABCDEFG"
-    if n == 0:
-        return "0"
-    while n:
-        result = digits[n % base] + result
-        n //= base
-    return result
     
+    if num == 0: return '0'
+    
+    while num > 0:
+        result = digits[num % base] + result
+        num //= base
+    
+    return result
 
 def solution(n, t, m, p):
-    result = ""
+    result = ''
     
     for i in range(t*m):
-        result += to_base(i, n)
+        result += to_base_n(i, n)
 
-    result = "".join(result[i] for i in range(p-1, len(result), m))
-    return result[:t]
+    return "".join(list(result)[p-1:t*m:m])
+    
