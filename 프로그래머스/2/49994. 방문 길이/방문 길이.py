@@ -1,24 +1,20 @@
 def solution(dirs):
-    result = 0
-    dist = set()
-    cur_location = [0, 0]
+    result = set()
+    dist = {
+        "U": [0, 1],
+        "D": [0, -1],
+        "R": [1, 0],
+        "L": [-1, 0],
+    }
+    x, y = 0, 0
     
-    for d in dirs:        
-        prev_location = list(cur_location)
-        if d == "U":
-            cur_location[1] += 1
-        elif d == "D":
-            cur_location[1] -= 1
-        elif d == "R":
-            cur_location[0] += 1
-        elif d == "L":
-            cur_location[0] -= 1
+    for d in dirs:
+        dx = x + dist[d][0]
+        dy = y + dist[d][1]
         
-        if abs(cur_location[0]) > 5 or abs(cur_location[1]) > 5:
-            cur_location = list(prev_location)
-            continue
-
-        dist.add(frozenset([tuple(prev_location), tuple(cur_location)]))
-        
-    return len(dist)
+        if -5 <= dx <= 5 and -5 <= dy <= 5:
+            result.add((x, y, dx, dy))
+            result.add((dx, dy, x, y))
+            x, y = dx, dy
     
+    return len(result)//2
