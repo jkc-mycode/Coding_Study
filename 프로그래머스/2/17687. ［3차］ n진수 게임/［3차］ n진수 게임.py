@@ -1,5 +1,5 @@
 def to_base_n(num, base):
-    digits = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    digits = "0123456789ABCDEFG"
     result = ""
     
     if num == 0: return '0'
