@@ -1,20 +1,24 @@
 def solution(dirs):
-    directions = {
-        "U": (0, 1), "D": (0, -1), "R": (1, 0), "L": (-1, 0)
-    }
     result = 0
-    dx = 0
-    dy = 0
-    visited_way = []
+    dist = set()
+    cur_location = [0, 0]
     
-    for i in dirs:
-        x, y = directions[i]
-        nx, ny = dx + x, dy + y
-        if -5 <= nx <= 5 and -5 <= ny <= 5:
-            next_way = {(dx, dy), (nx, ny)}
-            if next_way not in visited_way:
-                visited_way.append(next_way)
-                result += 1
-            dx, dy = dx + x, dy + y
+    for d in dirs:        
+        prev_location = list(cur_location)
+        if d == "U":
+            cur_location[1] += 1
+        elif d == "D":
+            cur_location[1] -= 1
+        elif d == "R":
+            cur_location[0] += 1
+        elif d == "L":
+            cur_location[0] -= 1
+        
+        if abs(cur_location[0]) > 5 or abs(cur_location[1]) > 5:
+            cur_location = list(prev_location)
+            continue
 
-    return result
+        dist.add(frozenset([tuple(prev_location), tuple(cur_location)]))
+        
+    return len(dist)
+    
