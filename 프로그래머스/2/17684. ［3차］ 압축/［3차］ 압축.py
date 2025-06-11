@@ -4,19 +4,16 @@ def solution(msg):
     dic = {alpha[i]: i+1 for i in range(len(alpha))}
     count = len(dic) + 1
     
-    i = 0
-    while i < len(msg):
-        j = i + 1
-        while j <= len(msg) and dic.get(msg[i:j]) != None:
-            j += 1
-        
-            w = msg[i:j-1]
-        result.append(dic[w])
-
-        if j <= len(msg):
-            dic[msg[i:j]] = count
-            count += 1
-
-        i += len(w)
-    
+    while True:
+        if dic.get(msg) != None:
+            result.append(dic[msg])
+            break
+        for i in range(1, len(msg)+1):
+            if dic.get(msg[0:i]) == None:
+                result.append(dic[msg[0:i-1]])
+                dic[msg[0:i]] = count
+                count += 1
+                msg = msg[i-1:]
+                break
+                
     return result
