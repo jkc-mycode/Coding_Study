@@ -1,19 +1,22 @@
 def solution(msg):
     result = []
-    index = 26
-    dictionary = {chr(64+i): i  for i in range(1, 27)}
+    alpha = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+    dic = {alpha[i]: i+1 for i in range(len(alpha))}
+    count = len(dic) + 1
     
     i = 0
     while i < len(msg):
-        j = 1
-        while i+j <= len(msg) and msg[i:i+j] in dictionary:
+        j = i + 1
+        while j <= len(msg) and dic.get(msg[i:j]) != None:
             j += 1
         
-        result.append(dictionary.get(msg[i:i+j-1]))
-        if i+j <= len(msg):
-            index += 1
-            dictionary[msg[i:i+j]] = index
-        i += j - 1
-            
+            w = msg[i:j-1]
+        result.append(dic[w])
+
+        if j <= len(msg):
+            dic[msg[i:j]] = count
+            count += 1
+
+        i += len(w)
     
     return result
