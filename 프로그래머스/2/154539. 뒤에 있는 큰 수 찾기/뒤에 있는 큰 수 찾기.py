@@ -7,6 +7,8 @@ def solution(numbers):
             index = stack.pop()
             result[index] = num
         stack.append(i)
-
+    
     return result
             
+    
+    
