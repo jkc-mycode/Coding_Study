@@ -17,9 +17,6 @@ def solution(str1, str2):
         return 65536
     
     shared_list = list((Counter(str1_list) & Counter(str2_list)).elements())
-    merged_list = list((Counter(str1_list) | Counter(str2_list)).elements())
+    merged_list = list((Counter(str1_list) | Counter(str2_list)).elements())    
     
-    if not shared_list:
-        return 0
-    else:
-        return math.floor(len(shared_list)/len(merged_list) * 65536)
+    return math.floor(len(shared_list)/len(merged_list) * 65536)
